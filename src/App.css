@@ -1,0 +1,274 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* aside {
+  width: 250px;
+  background-color: #f6f8fc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} */
+
+/* main {
+  background-color: #ffffff;
+  width: 100%;
+  margin-left: 30px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  height: 95vh;
+  overflow-y: scroll;
+} */
+
+h1 {
+  color: black;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 20px;
+
+
+}
+
+.m {
+  padding: 30px;
+
+}
+
+nav {
+  margin-top: 20px;
+}
+
+nav>ul>li {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+nav>ul>li>a {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 400;
+  align-items: center;
+  justify-content: left;
+  display: flex;
+}
+
+nav>ul>li>a>span {
+  margin-left: 20px;
+
+}
+
+/* .btn {
+  padding: 10px;
+  background-color: #613de6;
+  border: none;
+  border-radius: 10px;
+  color: #ffff;
+} */
+
+.btn-add {
+  padding: 15px;
+  border-radius: 0 10px 10px 10px;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+  background-color: #613de6;
+}
+
+table>tr {
+  margin-left: 30px;
+  height: 35px;
+  margin-bottom: 80px;
+}
+
+.button-group {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+
+.task-list {
+  width: 100%;
+}
+
+.h3 {
+  margin: 25px;
+  /* padding: 15px; */
+  /* margin-bottom: 10px; */
+  margin-top: 40px;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.h3-1 {
+  margin: 25px;
+  /* padding: 15px; */
+  /* margin-bottom: 10px; */
+  margin-top: 40px;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-top: 40px;
+} m-6 mt-10 pt-10  text-black  text-xl font-medium
+
+.task-list {
+  font-size: xx-small;
+}
+
+.listetask {
+  width: 100%;
+  padding-right: 10px;
+}
+
+.list-meetings {
+  background-color: #fefefe;
+  width: 100%;
+  border-left: 1px solid rgba(255, 241, 221, 0.2);
+  padding: 0 20px;
+  height: 1000px;
+} 
+
+h2 {
+  margin-top: 8px;
+  font-size: 20px;
+  /* margin-left: 20px; */
+  padding: 25px;
+}
+
+.input-icons {
+  margin-top: 30px;
+  margin-left: 300px;
+}
+
+.hr {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.popop {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.add-task-form {
+  /* padding: 50px;
+  background-color: rgba(255, 255, 255);
+  margin-left: 15px;
+  border-radius: 10px; */
+  margin: 25px 15px 52px 10px;
+} 
+
+.btnsub {
+  background-color: #613de6;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  margin-top: 35px;
+  color: #ffffff;
+  width: 100px;
+  margin-left: 15px;
+}
+
+.inputbtn {
+  background-color: none;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #cacaca;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-cancel {
+  background-color: #fd510d;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  margin-top: 35px;
+  margin-left: 50px;
+  color: #ffffff;
+  width: 100px;
+} 
+.select{
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #cacaca;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: none;
+}
+.check{
+  margin: 5px;
+  padding: 5px;
+}
+
+/* responsive mode tablette */
+
+@media screen and (max-width: 912px) {
+  main {
+    flex-direction: column-reverse;
+    display: flex;
+  }
+
+  .meetings {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  /* .list-meetings{
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+    padding: none;
+    margin: none;
+  } */
+}
+
+/* responsive mode Téléphone */
+@media only screen and (max-width: 390px) {
+  .m{
+      display: none;
+  }
+  .input-icons {
+    margin-top: 10px;
+    margin-left: 100px;
+  }
+  .meetings {
+    margin:10px
+  }
+  .listetask {
+    width: 100%;
+    padding-right: 15px; 
+  }
+  .margin-bottom-30 {
+    box-sizing: border-box
+  }
+}

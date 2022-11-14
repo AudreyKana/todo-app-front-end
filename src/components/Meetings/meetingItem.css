@@ -1,0 +1,43 @@
+.meeting-list{
+    width: 60%;
+    height: 100%;
+    background-color: brown;
+    margin: 15px;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 10px;
+    margin-left: 90px;
+
+}
+h6{
+    font-size: x-small;
+    padding:8px;
+    margin-left: 10px;
+    font-weight: 500;
+}
+h5{
+    font-size: small;
+    font-weight: 600;
+    padding: 8px;
+    margin-left: 8px;
+    
+}
+h2{
+    margin-left: -8px; 
+    display: inline-flex;
+}
+
+/* respnsive mode Tablette */
+
+@media screen and (max-width: 912px) {
+    .meeting-list{
+        width: 45%; 
+        margin: 5px;
+    }
+}
+/* responsive telephone */
+@media screen and (max-width: 390px) {
+    .meeting-list{
+        width: 100%;
+    }
+}
