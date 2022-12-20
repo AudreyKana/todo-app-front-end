@@ -33,25 +33,22 @@ h1 {
   font-size: 1.6rem;
   font-weight: 600;
   padding: 20px;
-
-
 }
 
 .m {
   padding: 30px;
-
 }
 
 nav {
   margin-top: 20px;
 }
 
-nav>ul>li {
+nav > ul > li {
   list-style: none;
   margin-bottom: 20px;
 }
 
-nav>ul>li>a {
+nav > ul > li > a {
   list-style: none;
   text-decoration: none;
   color: black;
@@ -62,9 +59,8 @@ nav>ul>li>a {
   display: flex;
 }
 
-nav>ul>li>a>span {
+nav > ul > li > a > span {
   margin-left: 20px;
-
 }
 
 /* .btn {
@@ -82,7 +78,7 @@ nav>ul>li>a>span {
   background-color: #613de6;
 }
 
-table>tr {
+table > tr {
   margin-left: 30px;
   height: 35px;
   margin-bottom: 80px;
@@ -129,7 +125,7 @@ table>tr {
   font-size: 1.2rem;
   font-weight: 500;
   padding-top: 40px;
-} m-6 mt-10 pt-10  text-black  text-xl font-medium
+}
 
 .task-list {
   font-size: xx-small;
@@ -146,7 +142,7 @@ table>tr {
   border-left: 1px solid rgba(255, 241, 221, 0.2);
   padding: 0 20px;
   height: 1000px;
-} 
+}
 
 h2 {
   margin-top: 8px;
@@ -183,7 +179,7 @@ h2 {
   margin-left: 15px;
   border-radius: 10px; */
   margin: 25px 15px 52px 10px;
-} 
+}
 
 .btnsub {
   background-color: #613de6;
@@ -214,8 +210,8 @@ h2 {
   margin-left: 50px;
   color: #ffffff;
   width: 100px;
-} 
-.select{
+}
+.select {
   border-radius: 10px;
   padding: 10px;
   border: 1px solid #cacaca;
@@ -223,7 +219,7 @@ h2 {
   margin-bottom: 10px;
   background-color: none;
 }
-.check{
+.check {
   margin: 5px;
   padding: 5px;
 }
@@ -254,21 +250,21 @@ h2 {
 
 /* responsive mode Téléphone */
 @media only screen and (max-width: 390px) {
-  .m{
-      display: none;
+  .m {
+    display: none;
   }
   .input-icons {
     margin-top: 10px;
     margin-left: 100px;
   }
   .meetings {
-    margin:10px
+    margin: 10px;
   }
   .listetask {
     width: 100%;
-    padding-right: 15px; 
+    padding-right: 15px;
   }
   .margin-bottom-30 {
-    box-sizing: border-box
+    box-sizing: border-box;
   }
 }

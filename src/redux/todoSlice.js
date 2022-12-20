@@ -1,54 +1,114 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  apiAddTask,
+  apiDeleteTask,
+  apiDeleteTempTask,
+  apiRestoreDeletedTask,
+  apiUpdateTask,
+  apiPagination,
+} from "./api";
 
-const saveTasks = (state) => {
-    localStorage.setItem("tasksData", JSON.stringify(state))
-} 
+export const deleteTask = createAsyncThunk(
+  "task/deleteTask",
+  async (id, thunkAPI) => {
+    const response = await apiDeleteTask(id);
+    return response.data;
+  }
+);
 
+export const deleteTempTask = createAsyncThunk(
+  "task/deteleTempTask",
+  async (id, thunkAPI) => {
+    const response = await apiDeleteTempTask(id);
+    return response.data;
+  }
+);
+export const restoreDeletedTask = createAsyncThunk(
+  "task/restoreDeletedTask",
+  async (id, thunkAPI) => {
+    const response = await apiRestoreDeletedTask(id);
+    return response.data;
+  }
+);
+export const updateTask = createAsyncThunk(
+  "task/updateTask",
+  async (id, thunkAPI) => {
+    const response = await apiUpdateTask(id);
+    return response.data;
+  }
+);
+export const addTask = createAsyncThunk(
+  "task/addTask",
+  async (id, thunkAPI) => {
+    const response = await apiAddTask(id);
+    return response.data;
+  }
+);
+
+export const paginationApi = createAsyncThunk(
+  "task/pagination",
+  async (p, thunkAPI) => {
+    const response = await apiPagination(p);
+    return response.data;
+  }
+);
 
 export const todoSlice = createSlice({
-    name: 'todoApp',
-    initialState: {
-        tasks: []
+  name: "todoApp",
+  initialState: {},
+  reducers: {
+    getAllTasksAction: (state, action) => {
+      return action.payload;
     },
-    // initialState: (localStorage.getItem("tasksData") !== null) ? JSON.parse(localStorage.getItem("tasksData")) : [],
-    reducers: {
-        addTask: (state, action) => {
-            state.tasks.push(action.payload)
-            saveTasks(state)
-            return state
-        },
-        deleteTask: (state, action) => {
-            const tasks = state.tasks.filter(task => task.id !== action.payload)
-            state.tasks = tasks
-            saveTasks(state)
-            return state
-        },
-        updateTask: (state, action) => {
-            const tasks = state.tasks.map(task => (task.id === action.payload.id) ? task = action.payload : task)
-            state.tasks = tasks
-            saveTasks(state)
-            return state
-        },
-        deleteTempTask: (state, action) => {
-            const task = state.tasks.find(task => task.id === action.payload)
-            task.deleted = true
-            saveTasks(state)
-            return state
-        },
-        restoreDeletedTask: (state, action) => {
-            const task = state.tasks.find(task => task.id === action.payload)
-            task.deleted = false
-            saveTasks(state)
-            return state
-        },
-
-        getAllTasksAction: (state, action) => {
-            return {tasks: action.payload};
+  },
+  extraReducers: (builder) => {
+    builder.addCase(deleteTask.fulfilled, (state, action) => {
+      return {
+        ...state,
+        results: state.results.filter((t) => t.id !== action.payload.data),
+      };
+      // return state.results.filter((t) => t.id !== action.payload.data);
+    });
+    builder.addCase(deleteTempTask.fulfilled, (state, action) => {
+      state.results.map((t) => {
+        if (t.id === action.payload.data) {
+          t.is_deleted = true;
         }
-    }
-
+      });
+    });
+    builder.addCase(restoreDeletedTask.fulfilled, (state, action) => {
+      state.results.find((task) => {
+        if (task.id === action.payload.data) {
+          task.is_deleted = false;
+        }
+      });
+    });
+    builder.addCase(updateTask.fulfilled, (state, action) => {
+      const data = action.payload;
+      const task = state.results.filter((task) => task.id !== data.id);
+      task.push({ ...data, logo: "http://192.168.30.11:8000" + data.logo });
+      // return {
+      //   ...state,
+      //   tasks: task,
+      // };
+      window.location.reload();
+      return task;
+    });
+    builder.addCase(addTask.fulfilled, (state, action) => {
+      const data = action.payload;
+      const task = state.results.filter((task) => task.id !== data.id);
+      task.push({ ...data, logo: "http://192.168.30.11:8000" + data.logo });
+      // return {
+      //   ...state,
+      //   tasks: task,
+      // };
+      window.location.reload();
+      return task;
+    });
+    builder.addCase(paginationApi.fulfilled, (state, action) => {
+      return action.payload;
+    });
+  },
 });
 
-// export const {addTask, deleteTempTask, updateTask, restoreDeletedTask, deleteTask} = todoSlice.actions
-
-// export default todoSlice.reducer;
+// export const selectUser = (state) => state.user.isAuthentificated;

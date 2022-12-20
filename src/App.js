@@ -1,55 +1,47 @@
 import "./App.css";
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Dashboard/Index";
+import React, { useCallback } from "react";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import LoginPage from "./pages/Login/loginPage";
+import Register from "./pages/Login/register";
+import MainLayout from "./components/Layout/mainLayout";
+import Dashboard from "./pages/Dashboard/Index";
 import Anytime from "./pages/Anytime/Index";
-import Sidebar from "./components/Sidebar";
-import { useEffect, useState } from "react";
-import AddTaskPopup from "./components/AddTaskPopup";
-import Upcoming from "./pages/Upcoming";
-import Today from "./pages/Today";
-import Someday from "./pages/Someday";
-import Trash from "./pages/Trash";
-import { useDispatch } from "react-redux";
-import { getAllTasksAction } from "./redux/todoAction";
-import { apiGetAllTasks } from "./redux/api";
-
+import Today from "./pages/Today/index";
+import Someday from "./pages/Someday/index";
+import Trash from "./pages/Trash/index";
+import Upcoming from "./pages/Upcoming/index";
+import PrivateRoutes from "./Routes/privateRoute";
 
 function App() {
-
-  const [popup, setPopup] = useState(false);
-  const [closePopup, setClosePopup] = useState(false);
-  const dispatch = useDispatch()
-  useEffect(()=>{ 
-     apiGetAllTasks().then(async (res)=>{
-      if([200, 201].includes(res.status)){
-        dispatch(getAllTasksAction(res.data));
-      }
-    }).catch(e=>console.log('loading task err : ', e));
-  }, [dispatch]);
   return (
-      <>
-        <Router>
-        <Sidebar showPopup={setPopup} />
-        <main className="h-screen w-full ml-7 p-5 bg-white overflow-y-scroll grid grid-cols-1 lg:grid-cols-5 gap-10">
+    <>
+      <Router forceRefresh={true}>
+        <Routes>
           {/* on appelle ce sidebar a ce niveau pour quil soit toujours present sur toutes les routes */}
-          <Routes>
-            <Route pathname="home" path="" element={<Home />} />
-            <Route pathname="anytime" path="/anytime" element={<Anytime />} />
-            <Route pathname="upcoming" path="/upcoming" element={<Upcoming />} />
-            <Route pathname="today" path="/today" element={<Today />} />
-            <Route pathname="someday" path="/someday" element={<Someday />} />
-            <Route pathname="trash" path="/trash" element={<Trash />} />
-          </Routes>
-        </main>
+          <Route pathname="login" path="/login" exact element={<LoginPage />} />
+          <Route element={<MainLayout />}>
+            <Route element={<PrivateRoutes />}>
+              <Route pathname="home" path="/" exact element={<Dashboard />} />
+              <Route pathname="anytime" path="/anytime" element={<Anytime />} />
+              <Route
+                pathname="upcoming"
+                path="/upcoming"
+                element={<Upcoming />}
+              />
+              <Route pathname="today" path="/today" element={<Today />} />
+              <Route pathname="someday" path="/someday" element={<Someday />} />
+              <Route pathname="trash" path="/trash" element={<Trash />} />
+              <Route
+                pathname="resgister"
+                path="/register"
+                element={<Register />}
+              />
+            </Route>
+          </Route>
+        </Routes>
       </Router>
-
-      {popup && 
-        <AddTaskPopup showPopup={setPopup}/>
-      }
-      </>
+    </>
   );
-
 }
 
 export default App;

@@ -6,7 +6,8 @@ import * as BsIcons from "react-icons/bs";
 export const sidebarData = [
   {
     title: "Dashboard",
-    path: "/",
+    path: "",
+    click: true,
     icons: <AiIcons.AiOutlineDashboard />,
   },
   {
